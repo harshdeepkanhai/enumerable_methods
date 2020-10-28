@@ -52,4 +52,17 @@ module Enumerable
     end
     result
   end
+
+  def my_none?
+    result = true
+    i = 0
+    while i < length
+      if yield(self[i])
+        result = false
+        break
+      end
+      i += 1
+    end
+    result
+  end
 end
