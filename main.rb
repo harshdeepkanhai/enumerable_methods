@@ -77,4 +77,14 @@ module Enumerable
     end
     count
   end
+
+  def my_map
+    arr = []
+    i = 0
+    while i < length
+      arr.push(yield(self[i]))
+      i += 1
+    end
+    arr
+  end
 end
