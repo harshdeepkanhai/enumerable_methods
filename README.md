@@ -1,17 +1,17 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Enumerable methods
 
 > One paragraph statement about the project.
 
-![screenshot](./app_screenshot.png)
+<!-- ![screenshot](./app_screenshot.png) -->
 
 Additional description about the project and its features.
 
 ## Built With
 
-- Major languages
-- Frameworks
+- Ruby
+- Rubocop
 - Technologies used
 
 ## Live Demo
