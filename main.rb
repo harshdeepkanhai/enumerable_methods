@@ -26,4 +26,17 @@ module Enumerable
     end
     arr
   end
+
+  def my_all?
+    result = true
+    i = 0
+    while i < length
+      unless yield(self[i])
+        result = false
+        break
+      end
+      i += 1
+    end
+    result
+  end
 end
