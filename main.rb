@@ -78,8 +78,3 @@ module Enumerable
     count
   end
 end
-
-ary = [1, 2, 4, 2]
-
-p ary.my_count
-p ary.my_count(&:even?)
