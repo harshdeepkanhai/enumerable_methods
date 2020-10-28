@@ -65,4 +65,21 @@ module Enumerable
     end
     result
   end
+
+  def my_count
+    return length unless block_given?
+
+    count = 0
+    i = 0
+    while i < length
+      count += 1 if yield(self[i])
+      i += 1
+    end
+    count
+  end
 end
+
+ary = [1, 2, 4, 2]
+
+p ary.my_count
+p ary.my_count(&:even?)
