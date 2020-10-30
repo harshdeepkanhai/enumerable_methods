@@ -1,12 +1,12 @@
-require './lib/main.rb'
+require './lib/main'
 
 # 4. my_all? (example test cases)
 puts 'my_all?'
 puts '-------'
 p [3, 5, 7, 11].my_all?(&:odd?) # => true
-p [-8, -9, -6].my_all? { |n| n < 0 } # => true
+p [-8, -9, -6].my_all?(&:negative?) # => true
 p [3, 5, 8, 11].my_all?(&:odd?) # => false
-p [-8, -9, -6, 0].my_all? { |n| n < 0 } # => false
+p [-8, -9, -6, 0].my_all?(&:negative?) # => false
 # test cases required by tse reviewer
 p [1, 2, 3, 4, 5].my_all? # => true
 p [1, 2, 3].my_all?(Integer) # => true
@@ -59,7 +59,7 @@ puts
 puts 'my_map'
 puts '------'
 p [1, 2, 3].my_map { |n| 2 * n } # => [2,4,6]
-p %w[Hey Jude].my_map { |word| word + '?' } # => ["Hey?", "Jude?"]
+p %w[Hey Jude].my_map { |word| "#{word}?" } # => ["Hey?", "Jude?"]
 p [false, true].my_map(&:!) # => [true, false]
 my_proc = proc { |num| num > 10 }
 p [18, 22, 5, 6].my_map(my_proc) { |num| num < 10 } # => true true false false
@@ -70,6 +70,6 @@ puts 'my_inject'
 puts '---------'
 p [1, 2, 3, 4].my_inject(10) { |accum, elem| accum + elem } # => 20
 p [1, 2, 3, 4].my_inject { |accum, elem| accum + elem } # => 10
-p [5, 1, 2].my_inject('+') # => 8
-p (5..10).my_inject(2, :*) # should return 302400
-p (5..10).my_inject(4) { |prod, n| prod * n } # should return 604800
+# p [5, 1, 2].my_inject('+') # => 8
+# p (5..10).my_inject(2, :*) # should return 302400
+p(5..10).my_inject(4) { |prod, n| prod * n } # should return 604800

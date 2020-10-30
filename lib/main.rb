@@ -27,53 +27,157 @@ module Enumerable
     arr
   end
 
-  def my_all?
+  def my_all?(param = nil)
     result = true
-    i = 0
-    while i < length
-      unless yield(self[i])
-        result = false
-        break
+    if !block_given? && param.nil?
+      return result
+    elsif param.is_a? Regexp
+      i = 0
+      while i < length
+        unless param.match?(self[i])
+          result = false
+          break
+        end
+        i += 1
       end
-      i += 1
+    elsif param.is_a? Class
+      i = 0
+      while i < length
+        unless self[i].is_a? param
+          result = false
+          break
+        end
+        i += 1
+      end
+    elsif block_given?
+      i = 0
+      while i < length
+        unless yield(self[i])
+          result = false
+          break
+        end
+        i += 1
+      end
+    else
+      i = 0
+      while i < length
+        unless self[i] == param
+          result = false
+          break
+        end
+        i += 1
+      end
     end
+
     result
   end
 
-  def my_any?
+  def my_any?(param = nil)
     result = false
-    i = 0
-    while i < length
-      if yield(self[i])
-        result = true
-        break
+    if !block_given? && param.nil?
+      result = true
+      return result
+    elsif param.is_a? Regexp
+      i = 0
+      while i < length
+        if param.match?(self[i])
+          result = true
+          break
+        end
+        i += 1
       end
-      i += 1
+    elsif param.is_a? Class
+      i = 0
+      while i < length
+        if self[i].is_a? param
+          result = true
+          break
+        end
+        i += 1
+      end
+    elsif block_given?
+      i = 0
+      while i < length
+        if yield(self[i])
+          result = true
+          break
+        end
+        i += 1
+      end
+    else
+      i = 0
+      while i < length
+        if self[i] == param
+          result = true
+          break
+        end
+        i += 1
+      end
     end
     result
   end
 
-  def my_none?
+  def my_none?(param = nil)
     result = true
-    i = 0
-    while i < length
-      if yield(self[i])
-        result = false
-        break
+    if !block_given? && param.nil?
+      result = false
+      return result
+    elsif param.is_a? Regexp
+      i = 0
+      while i < length
+        if param.match?(self[i])
+          result = false
+          break
+        end
+        i += 1
       end
-      i += 1
+    elsif param.is_a? Class
+      i = 0
+      while i < length
+        if self[i].is_a? param
+          result = false
+          break
+        end
+        i += 1
+      end
+    elsif block_given?
+      i = 0
+      while i < length
+        if yield(self[i])
+          result = false
+          break
+        end
+        i += 1
+      end
+    else
+      i = 0
+      while i < length
+        if self[i] == param
+          result = false
+          break
+        end
+        i += 1
+      end
     end
     result
   end
 
-  def my_count
-    return length unless block_given?
-
-    count = 0
-    i = 0
-    while i < length
-      count += 1 if yield(self[i])
-      i += 1
+  def my_count(param = nil)
+    return length if !(block_given?) && param.nil?
+    if block_given?
+      count = 0
+      i = 0
+      while i < length
+        count += 1 if yield(self[i])
+        i += 1
+      end
+    else 
+      count = 0
+      i = 0
+      while i < length
+        count += 1 if self[i] == param
+        i += 1
+      end
     end
     count
   end
@@ -88,12 +192,30 @@ module Enumerable
     arr
   end
 
-  def my_inject
-    result = self[0]
-    i = 1
-    while i < length
-      result = yield(result, self[i])
-      i += 1
+  def my_inject(param = nil)
+    if param.nil?
+      result = self[0]
+      i = 1
+    else
+      result = param
+      i = 0
+    end
+
+    if !(param.nil?) && !(is_a?(Range))
+      while i < length 
+        result = yield(result, self[i])
+        i += 1
+      end
+    elsif block_given? && !(is_a?(Range))
+      while i < length
+        result = yield(result, self[i])
+        i += 1
+      end
+    elsif is_a? Range
+      while i < to_a.length
+        result = yield(result, self.to_a[i])
+        i += 1
+      end
     end
     result
   end

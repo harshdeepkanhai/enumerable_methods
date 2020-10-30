@@ -35,7 +35,7 @@ To get a local copy up and running follow these simple example steps.
 ### Usage
 
 - add some test cases and
-- run `ruby main.rb`
+- run `ruby test.rb`
 
 ### Run tests
 
