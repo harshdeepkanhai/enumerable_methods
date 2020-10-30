@@ -78,11 +78,11 @@ module Enumerable
     count
   end
 
-  def my_map
+  def my_map(proc = nil)
     arr = []
     i = 0
     while i < length
-      arr.push(yield(self[i]))
+      proc.nil? ? arr.push(yield(self[i])) : arr.push(proc.call(self[i]))
       i += 1
     end
     arr
