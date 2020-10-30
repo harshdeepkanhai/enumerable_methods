@@ -12,7 +12,6 @@ Additional description about the project and its features.
 
 - Ruby
 - Rubocop
-- Technologies used
 
 ## Live Demo
 
@@ -21,45 +20,41 @@ Additional description about the project and its features.
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
 
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
+- `Ruby version 2.7`
+- `Rubocop` gem
+
 ### Setup
 
-### Install
+- clone this repo using `git clone`
 
 ### Usage
 
+- add some test cases and
+- run `ruby main.rb`
+
 ### Run tests
 
-### Deployment
+- run `rubocop` in the terminal
 
+## Author
 
+👤 **K**
 
-## Authors
+- GitHub: [@harshdeepkanhai](https://github.com/harshdeepkanhai)
+- Twitter: [@harshdeepkanhai](https://twitter.com/harshdeepkanhai)
+- LinkedIn: [harshdeepkanhai](https://linkedin.com/in/harshdeepkanhai)
 
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/linkedinhandle)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/harshdeepkanhai/enumerable_methods/issues).
 
 ## Show your support
 
@@ -67,9 +62,10 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- [Ruby Enumerable Documentation](https://ruby-doc.org/core-2.7.2/Enumerable.html)
+- [Ruby Proc Documentation](https://ruby-doc.org/core-2.7.2/Proc.html)
+- [The Odin Project](https://github.com/TheOdinProject/curriculum/blob/master/archive/old_lessons/ruby/basic_ruby/project_advanced_building_blocks.md#project-2-enumerable-methods)
+
 
 ## 📝 License
 
