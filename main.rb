@@ -87,4 +87,18 @@ module Enumerable
     end
     arr
   end
+
+  def my_inject
+    result = self[0]
+    i = 1
+    while i < length
+      result = yield(result, self[i])
+      i += 1
+    end
+    result
+  end
+end
+
+def multiply_els(arr)
+  arr.my_inject { |accum, i| accum * i }
 end
