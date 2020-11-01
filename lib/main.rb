@@ -163,7 +163,8 @@ module Enumerable
   end
 
   def my_count(param = nil)
-    return length if !(block_given?) && param.nil?
+    return length if !block_given? && param.nil?
+
     if block_given?
       count = 0
       i = 0
@@ -171,7 +172,7 @@ module Enumerable
         count += 1 if yield(self[i])
         i += 1
       end
-    else 
+    else
       count = 0
       i = 0
       while i < length
@@ -192,32 +193,26 @@ module Enumerable
     arr
   end
 
-  def my_inject(param = nil)
-    if param.nil?
-      result = self[0]
-      i = 1
-    else
-      result = param
-      i = 0
+  def my_inject(accumulator = nil, sym = nil)
+    if (!accumulator.nil? && sym.nil?) && (accumulator.is_a?(Symbol) || accumulator.is_a?(String))
+      sym = accumulator
+      accumulator = nil
     end
 
-    if !(param.nil?) && !(is_a?(Range))
-      while i < length 
-        result = yield(result, self[i])
+    if !block_given? and !sym.nil?
+      i = 0
+      while i < size
+        accumulator = accumulator.nil? ? to_a[i] : accumulator.send(sym, to_a[i])
         i += 1
       end
-    elsif block_given? && !(is_a?(Range))
-      while i < length
-        result = yield(result, self[i])
-        i += 1
-      end
-    elsif is_a? Range
-      while i < to_a.length
-        result = yield(result, self.to_a[i])
+    elsif block_given?
+      i = 0
+      while i < size
+        accumulator = accumulator.nil? ? to_a[i] : yield(accumulator, to_a[i])
         i += 1
       end
     end
-    result
+    accumulator
   end
 end
 
