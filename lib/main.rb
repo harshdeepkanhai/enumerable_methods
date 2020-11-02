@@ -1,3 +1,6 @@
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
+
 module Enumerable
   def my_each
     i = 0
@@ -19,162 +22,67 @@ module Enumerable
 
   def my_select
     arr = []
-    i = 0
-    while i < length
-      arr.push(self[i]) if yield(self[i])
-      i += 1
-    end
+    my_each { |elem| arr.push(elem) if yield(elem) }
     arr
   end
 
   def my_all?(param = nil)
-    result = true
-    if !block_given? && param.nil?
-      return result
-    elsif param.is_a? Regexp
-      i = 0
-      while i < length
-        unless param.match?(self[i])
-          result = false
-          break
-        end
-        i += 1
-      end
-    elsif param.is_a? Class
-      i = 0
-      while i < length
-        unless self[i].is_a? param
-          result = false
-          break
-        end
-        i += 1
-      end
-    elsif block_given?
-      i = 0
-      while i < length
-        unless yield(self[i])
-          result = false
-          break
-        end
-        i += 1
-      end
-    else
-      i = 0
-      while i < length
-        unless self[i] == param
-          result = false
-          break
-        end
-        i += 1
-      end
-    end
+    return true if !block_given? && param.nil?
 
-    result
+    if param.is_a? Regexp
+      my_each { |elem| return false unless param.match?(elem) }
+    elsif param.is_a? Class
+      my_each { |elem| return false unless elem.is_a?(param) }
+    elsif block_given?
+      my_each { |elem| return false unless yield(elem) }
+    else
+      my_each { |elem| return false unless elem == param }
+    end
+    true
   end
 
   def my_any?(param = nil)
-    result = false
-    if !block_given? && param.nil?
-      result = true
-      return result
-    elsif param.is_a? Regexp
-      i = 0
-      while i < length
-        if param.match?(self[i])
-          result = true
-          break
-        end
-        i += 1
-      end
+    return true if !block_given? && param.nil?
+
+    if param.is_a? Regexp
+      my_each { |elem| return true if param.match?(elem) }
     elsif param.is_a? Class
-      i = 0
-      while i < length
-        if self[i].is_a? param
-          result = true
-          break
-        end
-        i += 1
-      end
+      my_each { |elem| return true if elem.is_a?(param) }
     elsif block_given?
-      i = 0
-      while i < length
-        if yield(self[i])
-          result = true
-          break
-        end
-        i += 1
-      end
+      my_each { |elem| return true if yield(elem) }
     else
-      i = 0
-      while i < length
-        if self[i] == param
-          result = true
-          break
-        end
-        i += 1
-      end
+      my_each { |elem| return true if elem == param }
     end
-    result
+    false
   end
 
   def my_none?(param = nil)
-    result = true
-    if !block_given? && param.nil?
-      result = false
-      return result
-    elsif param.is_a? Regexp
-      i = 0
-      while i < length
-        if param.match?(self[i])
-          result = false
-          break
-        end
-        i += 1
-      end
+    return false if !block_given? && param.nil?
+    
+    if param.is_a? Regexp
+      my_each { |elem| return false if param.match?(elem) }
     elsif param.is_a? Class
-      i = 0
-      while i < length
-        if self[i].is_a? param
-          result = false
-          break
-        end
-        i += 1
-      end
+      my_each { |elem| return false if elem.is_a?(param) }
     elsif block_given?
-      i = 0
-      while i < length
-        if yield(self[i])
-          result = false
-          break
-        end
-        i += 1
-      end
+      my_each { |elem| return false if yield(elem) }
     else
-      i = 0
-      while i < length
-        if self[i] == param
-          result = false
-          break
-        end
-        i += 1
-      end
+      my_each { |elem| return false if elem == param }
     end
-    result
+    true
   end
 
   def my_count(param = nil)
     return length if !block_given? && param.nil?
 
+    count = 0
+    i = 0
     if block_given?
-      count = 0
-      i = 0
+
       while i < length
         count += 1 if yield(self[i])
         i += 1
       end
     else
-      count = 0
-      i = 0
       while i < length
         count += 1 if self[i] == param
         i += 1
@@ -219,3 +127,6 @@ end
 def multiply_els(arr)
   arr.my_inject { |accum, i| accum * i }
 end
+
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
