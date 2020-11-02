@@ -58,7 +58,7 @@ module Enumerable
 
   def my_none?(param = nil)
     return false if !block_given? && param.nil?
-    
+
     if param.is_a? Regexp
       my_each { |elem| return false if param.match?(elem) }
     elsif param.is_a? Class
@@ -75,18 +75,10 @@ module Enumerable
     return length if !block_given? && param.nil?
 
     count = 0
-    i = 0
     if block_given?
-
-      while i < length
-        count += 1 if yield(self[i])
-        i += 1
-      end
+      my_each { |elem| count += 1 if yield(elem) }
     else
-      while i < length
-        count += 1 if self[i] == param
-        i += 1
-      end
+      my_each { |elem| count += 1 if elem == param }
     end
     count
   end
