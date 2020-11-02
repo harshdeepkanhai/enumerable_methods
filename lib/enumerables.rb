@@ -44,7 +44,6 @@ module Enumerable
     else
       my_each { |elem| return false unless elem == param }
     end
-
     true
   end
 

@@ -2,11 +2,17 @@
 
 # Enumerable methods
 
-> One paragraph statement about the project.
+> Custome Enumerable methods with following methods
 
-<!-- ![screenshot](./app_screenshot.png) -->
-
-Additional description about the project and its features.
+- `my_each`
+- `my_each_with_index`
+- `my_select`
+- `my_all?`
+- `my_any?`
+- `my_none?`
+- `my_count`
+- `my_map`
+- `my_inject`
 
 ## Built With
 
