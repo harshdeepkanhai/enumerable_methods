@@ -15,7 +15,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](https://repl.it/@kanhai/RubyCustomEnumerable#main.rb)
+[Live Demo Link](https://repl.it/@kanhai/enumerable)
 
 
 ## Getting Started
