@@ -3,31 +3,37 @@
 
 module Enumerable
   def my_each
+    return to_enum unless block_given?
+
     i = 0
-    while i < length
-      yield(self[i])
+    while i < size
+      yield(to_a[i])
       i += 1
     end
     self
   end
 
   def my_each_with_index
+    return to_enum unless block_given?
+
     i = 0
-    while i < length
-      yield(self[i], i)
+    while i < size
+      yield(to_a[i], i)
       i += 1
     end
     self
   end
 
   def my_select
+    return to_enum unless block_given?
+
     arr = []
     my_each { |elem| arr.push(elem) if yield(elem) }
     arr
   end
 
   def my_all?(param = nil)
-    return true if !block_given? && param.nil?
+    return include?(nil) || include?(false) ? false : true if param.nil? && !block_given?
 
     if param.is_a? Regexp
       my_each { |elem| return false unless param.match?(elem) }
@@ -38,13 +44,15 @@ module Enumerable
     else
       my_each { |elem| return false unless elem == param }
     end
+
     true
   end
 
   def my_any?(param = nil)
-    return true if !block_given? && param.nil?
-
-    if param.is_a? Regexp
+    if param.nil? && !block_given?
+      my_each { |elem| return true if elem }
+      return false
+    elsif param.is_a? Regexp
       my_each { |elem| return true if param.match?(elem) }
     elsif param.is_a? Class
       my_each { |elem| return true if elem.is_a?(param) }
@@ -57,9 +65,9 @@ module Enumerable
   end
 
   def my_none?(param = nil)
-    return false if !block_given? && param.nil?
-
-    if param.is_a? Regexp
+    if !block_given? && param.nil?
+      my_each { |elem| return false unless elem.nil? || elem == false }
+    elsif param.is_a? Regexp
       my_each { |elem| return false if param.match?(elem) }
     elsif param.is_a? Class
       my_each { |elem| return false if elem.is_a?(param) }
@@ -72,7 +80,7 @@ module Enumerable
   end
 
   def my_count(param = nil)
-    return length if !block_given? && param.nil?
+    return size if !block_given? && param.nil?
 
     count = 0
     if block_given?
@@ -84,12 +92,10 @@ module Enumerable
   end
 
   def my_map(proc = nil)
+    return to_enum unless block_given?
+
     arr = []
-    i = 0
-    while i < length
-      proc.nil? ? arr.push(yield(self[i])) : arr.push(proc.call(self[i]))
-      i += 1
-    end
+    my_each { |elem| proc.nil? ? arr.push(yield(elem)) : arr.push(proc.call(elem)) }
     arr
   end
 
@@ -100,17 +106,11 @@ module Enumerable
     end
 
     if !block_given? and !sym.nil?
-      i = 0
-      while i < size
-        accumulator = accumulator.nil? ? to_a[i] : accumulator.send(sym, to_a[i])
-        i += 1
-      end
+      my_each { |elem| accumulator = accumulator.nil? ? elem : accumulator.send(sym, elem) }
     elsif block_given?
-      i = 0
-      while i < size
-        accumulator = accumulator.nil? ? to_a[i] : yield(accumulator, to_a[i])
-        i += 1
-      end
+      my_each { |elem| accumulator = accumulator.nil? ? elem : yield(accumulator, elem) }
+    else
+      raise LocalJumpError
     end
     accumulator
   end

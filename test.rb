@@ -1,6 +1,6 @@
 # rubocop:disable all
 
-require './lib/main'
+require './lib/enumerables'
 
 # 4. my_all? (example test cases)
 puts 'my_all?'
