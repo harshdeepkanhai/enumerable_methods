@@ -58,11 +58,11 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@harshdeepkanhai](https://twitter.com/harshdeepkanhai)
 - LinkedIn: [harshdeepkanhai](https://linkedin.com/in/harshdeepkanhai)
 
-👤 **Juan**
+👤 **Juan Raudales**
 
-- GitHub: [@harshdeepkanhai](https://github.com/harshdeepkanhai)
-- Twitter: [@harshdeepkanhai](https://twitter.com/harshdeepkanhai)
-- LinkedIn: [harshdeepkanhai](https://linkedin.com/in/harshdeepkanhai)
+- GitHub: [@hJarfsoft](https://github.com/Jarfsoft)
+- Twitter: [@Jarfsoft](https://twitter.com/Jarfsoft)
+- LinkedIn: [Juan Andrés Raudales Flores](https://www.linkedin.com/in/juan-raudales-flores-7b0a3b113/)
 
 ## 🤝 Contributing
 
