@@ -73,7 +73,7 @@ describe Enumerable do
   end
   describe '#multiply_els' do
     it 'returns multiple of all values if * symbol passed' do
-      expect(multiply_els([10,20,30,40])).to eql(240000)
+      expect(multiply_els([10, 20, 30, 40])).to eql(240_000)
     end
   end
 end
