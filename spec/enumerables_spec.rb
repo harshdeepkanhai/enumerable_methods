@@ -1,4 +1,4 @@
-require '../lib/enumerables'
+require_relative '../lib/enumerables'
 
 describe Enumerable do
   describe '#my_each' do
@@ -69,6 +69,11 @@ describe Enumerable do
     end
     it 'returns total with accumulator passed' do
       expect([2, 3, 4, 5].my_inject { |accumulator, elem| accumulator + elem }).to eql(14)
+    end
+  end
+  describe '#multiply_els' do
+    it 'returns multiple of all values if * symbol passed' do
+      expect(multiply_els([10,20,30,40])).to eql(240000)
     end
   end
 end
