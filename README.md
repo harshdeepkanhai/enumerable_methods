@@ -2,7 +2,7 @@
 
 # Enumerable methods
 
-> Custome Enumerable methods with following methods
+> Custom Enumerable methods with following methods
 
 - `my_each`
 - `my_each_with_index`
@@ -33,19 +33,22 @@ To get a local copy up and running follow these simple example steps.
 
 - `Ruby version 2.7`
 - `Rubocop` gem
+- `bundler` gem installed
 
 ### Setup
 
 - clone this repo using `git clone`
+- run `bundle install`
 
 ### Usage
 
-- add some test cases and
-- run `ruby test.rb`
+- export the library by `require './lib/enumerables.rb'`
+
 
 ### Run tests
 
 - run `rubocop` in the terminal
+- run `rspec spec/enumerables_test.rb`
 
 ## Author
 
@@ -55,6 +58,11 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@harshdeepkanhai](https://twitter.com/harshdeepkanhai)
 - LinkedIn: [harshdeepkanhai](https://linkedin.com/in/harshdeepkanhai)
 
+👤 **Juan**
+
+- GitHub: [@harshdeepkanhai](https://github.com/harshdeepkanhai)
+- Twitter: [@harshdeepkanhai](https://twitter.com/harshdeepkanhai)
+- LinkedIn: [harshdeepkanhai](https://linkedin.com/in/harshdeepkanhai)
 
 ## 🤝 Contributing
 
